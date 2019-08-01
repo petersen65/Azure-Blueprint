@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Azure Security Center", "Azure Security Center\Azure Security Center.deployproj", "{26A30EC0-32F2-475D-86B6-663BEB67D79A}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Log Analytics", "Log Analytics\Log Analytics.deployproj", "{4D0A69B4-5E0C-4C2C-92A3-A23BE0E072FB}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Network", "Network\Network.deployproj", "{DA4688B9-DA4F-4A01-BE51-47E44747EA61}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Key Vault", "Key Vault\Key Vault.deployproj", "{4F1BEC70-7AFB-4B91-AC6D-722745A35151}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Network Security Group", "Network Security Group\Network Security Group.deployproj", "{08F30A4B-F6A2-4A27-9874-09F0C836A1A1}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Azure Firewall", "Azure Firewall\Azure Firewall.deployproj", "{5E18B0C4-F02C-423B-9259-5BF179A23B9A}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Active Directory Domain Controllers", "Active Directory Domain Controllers\Active Directory Domain Controllers.deployproj", "{2C3649A8-46DA-424E-A59F-C6100DC47FB1}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Jump Box", "Jump Box\Jump Box.deployproj", "{BE5F9581-3888-4888-997B-4146F481F469}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 1 - organization-sharedsvcs-log-rg", "Step 1 - organization-sharedsvcs-log-rg", "{65240122-BCA1-4DA1-88E1-D8A23AC58878}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 2 - organization-sharedsvcs-net-rg", "Step 2 - organization-sharedsvcs-net-rg", "{6100A067-7625-40B6-84C8-C4D0B642DC83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 3 - organization-sharedsvcs-net-rg", "Step 3 - organization-sharedsvcs-net-rg", "{A164907D-8F13-4055-B4A4-D3201C4C05DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 4 - organization-sharedsvcs-net-rg", "Step 4 - organization-sharedsvcs-net-rg", "{E65EA2CF-B9F2-4813-99C3-C187BCA4AE2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 5 - organization-sharedsvcs-kv-rg", "Step 5 - organization-sharedsvcs-kv-rg", "{5AF87B16-78A9-4430-B8A4-2145313C1009}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 99", "Step 99", "{C6468D7C-6866-4D80-8B6F-44BD0909FFFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 6 - organization-sharedsvcs-jb-rg", "Step 6 - organization-sharedsvcs-jb-rg", "{56045891-5D04-43D2-B1D7-CA7AEAAE6BEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Step 7 - organization-sharedsvcs-adds-rg", "Step 7 - organization-sharedsvcs-adds-rg", "{64A484FD-EF1B-46DF-B966-CCF25E4F6367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26A30EC0-32F2-475D-86B6-663BEB67D79A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A30EC0-32F2-475D-86B6-663BEB67D79A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A30EC0-32F2-475D-86B6-663BEB67D79A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A30EC0-32F2-475D-86B6-663BEB67D79A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0A69B4-5E0C-4C2C-92A3-A23BE0E072FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0A69B4-5E0C-4C2C-92A3-A23BE0E072FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0A69B4-5E0C-4C2C-92A3-A23BE0E072FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0A69B4-5E0C-4C2C-92A3-A23BE0E072FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4688B9-DA4F-4A01-BE51-47E44747EA61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4688B9-DA4F-4A01-BE51-47E44747EA61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4688B9-DA4F-4A01-BE51-47E44747EA61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4688B9-DA4F-4A01-BE51-47E44747EA61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F1BEC70-7AFB-4B91-AC6D-722745A35151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F1BEC70-7AFB-4B91-AC6D-722745A35151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F1BEC70-7AFB-4B91-AC6D-722745A35151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F1BEC70-7AFB-4B91-AC6D-722745A35151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08F30A4B-F6A2-4A27-9874-09F0C836A1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08F30A4B-F6A2-4A27-9874-09F0C836A1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08F30A4B-F6A2-4A27-9874-09F0C836A1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08F30A4B-F6A2-4A27-9874-09F0C836A1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E18B0C4-F02C-423B-9259-5BF179A23B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E18B0C4-F02C-423B-9259-5BF179A23B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E18B0C4-F02C-423B-9259-5BF179A23B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E18B0C4-F02C-423B-9259-5BF179A23B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C3649A8-46DA-424E-A59F-C6100DC47FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C3649A8-46DA-424E-A59F-C6100DC47FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C3649A8-46DA-424E-A59F-C6100DC47FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C3649A8-46DA-424E-A59F-C6100DC47FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE5F9581-3888-4888-997B-4146F481F469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE5F9581-3888-4888-997B-4146F481F469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE5F9581-3888-4888-997B-4146F481F469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE5F9581-3888-4888-997B-4146F481F469}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26A30EC0-32F2-475D-86B6-663BEB67D79A} = {C6468D7C-6866-4D80-8B6F-44BD0909FFFE}
+		{4D0A69B4-5E0C-4C2C-92A3-A23BE0E072FB} = {65240122-BCA1-4DA1-88E1-D8A23AC58878}
+		{DA4688B9-DA4F-4A01-BE51-47E44747EA61} = {A164907D-8F13-4055-B4A4-D3201C4C05DE}
+		{4F1BEC70-7AFB-4B91-AC6D-722745A35151} = {5AF87B16-78A9-4430-B8A4-2145313C1009}
+		{08F30A4B-F6A2-4A27-9874-09F0C836A1A1} = {6100A067-7625-40B6-84C8-C4D0B642DC83}
+		{5E18B0C4-F02C-423B-9259-5BF179A23B9A} = {E65EA2CF-B9F2-4813-99C3-C187BCA4AE2B}
+		{2C3649A8-46DA-424E-A59F-C6100DC47FB1} = {64A484FD-EF1B-46DF-B966-CCF25E4F6367}
+		{BE5F9581-3888-4888-997B-4146F481F469} = {56045891-5D04-43D2-B1D7-CA7AEAAE6BEC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1520796E-3634-4A91-9ED3-4BCA503AACD3}
+	EndGlobalSection
+EndGlobal

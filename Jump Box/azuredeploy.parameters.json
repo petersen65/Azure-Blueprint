@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "organization": {
+      "value": "petersen65"
+    },
+    "jumpbox-local-admin-password": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/858d67bf-023e-4655-b82a-8bae7c3060ee/resourceGroups/petersen65-sharedsvcs-kv-rg/providers/Microsoft.KeyVault/vaults/petersen65-sharedsvcs-kv"
+        },
+        "secretName": "jb-admin-user"
+      }
+    },
+    "logs-retention-in-days": {
+      "value": 30
+    }
+  }
+}

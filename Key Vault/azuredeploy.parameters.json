@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "organization": {
+      "value": "petersen65"
+    },
+    "jumpbox-local-admin-user-password": {
+      "value": "Passw0rd!#2019#PW"
+    },
+    "ad-domain-admin-user-password": {
+      "value": "Passw0rd!#2019#PW"
+    },
+    "deployment-user-object-id": {
+      "value": "f00c5d96-8aca-49b0-991c-891500ead0af"
+    }
+  }
+}

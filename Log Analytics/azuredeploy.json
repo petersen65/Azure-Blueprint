@@ -1,0 +1,190 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "organization": {
+      "type": "string",
+      "metadata": {
+        "description": "Organization name. For example: Contoso"
+      }
+    },
+    "account-sku": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Free",
+        "Basic"
+      ],
+      "metadata": {
+        "displayName": "Automation Account SKU",
+        "description": "Automation Account SKU: Free or Basic"
+      }
+    },
+    "service-tier": {
+      "type": "string",
+      "defaultValue": "PerGB2018",
+      "allowedValues": [
+        "Free",
+        "Standalone",
+        "PerNode",
+        "PerGB2018"
+      ],
+      "metadata": {
+        "displayName": "Service tier",
+        "description": "Service tier: Free, Standalone, PerNode or PerGB2018"
+      }
+    },
+    "data-retention": {
+      "type": "int",
+      "defaultValue": 30,
+      "minValue": 0,
+      "maxValue": 365,
+      "metadata": {
+        "displayName": "Log retention in days",
+        "description": "Number of days data will be retained for"
+      }
+    },
+    "location": {
+      "type": "string",
+      "allowedValues": [
+        "Australia Southeast",
+        "Canada Central",
+        "Central India",
+        "East US",
+        "Japan East",
+        "Southeast Asia",
+        "UK South",
+        "West Europe",
+        "West US 2"
+      ],
+      "defaultValue": "West Europe",
+      "metadata": {
+        "displayName": "Location",
+        "description": "Region used when establishing the workspace"
+      }
+    }
+  },
+  "variables": {
+    "deployment-prefix": "[concat(parameters('organization'), '-sharedsvcs')]",
+    "uniqueString": "[uniqueString(subscription().id, concat(variables('deployment-prefix'), '-log'))]",
+    "diagnostic-storageAccount-prefix": "[concat(replace(variables('deployment-prefix'), '-', ''), 'diag')]",
+    "diagnostic-storageAccount-name": "[toLower(substring(replace(concat(variables('diagnostic-storageAccount-prefix'), variables('uniqueString'), variables('uniqueString')), '-', ''), 0, 23) )]",
+    "oms-workspace-name": "[concat(variables('deployment-prefix'), '-log')]",
+    "automation-account-name": "[concat(variables('deployment-prefix'), '-auto')]"
+  },
+  "resources": [
+    {
+      "comments": "----DIAGNOSTICS STORAGE ACCOUNT-----",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('diagnostic-storageAccount-name')]",
+      "apiVersion": "2018-07-01",
+      "location": "[resourceGroup().location]",
+      "kind": "StorageV2",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "tags": {
+        "layer": "management"
+      },
+      "properties": {
+        "encryption": {
+          "keySource": "Microsoft.Storage",
+          "services": {
+            "blob": {
+              "enabled": true
+            },
+            "file": {
+              "enabled": true
+            }
+          }
+        },
+        "supportsHttpsTrafficOnly": true,
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "defaultAction": "Deny"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/providers/locks",
+      "apiVersion": "2016-09-01",
+      "name": "[concat(variables('diagnostic-storageAccount-name'), '/Microsoft.Authorization/storageDoNotDelete')]",
+      "dependsOn": [
+        "[concat('Microsoft.Storage/storageAccounts/', variables('diagnostic-storageAccount-name'))]"
+      ],
+      "comments": "Resource lock on diagnostic storage account",
+      "properties": {
+        "level": "CannotDelete"
+      }
+    },
+    {
+      "name": "[variables('automation-account-name')]",
+      "location": "[parameters('location')]",
+      "tags": {},
+      "apiVersion": "2015-10-31",
+      "type": "Microsoft.Automation/automationAccounts",
+      "properties": {
+        "sku": {
+          "name": "[parameters('account-sku')]"
+        }
+      }
+    },
+    {
+      "name": "[variables('oms-workspace-name')]",
+      "location": "[parameters('location')]",
+      "tags": {},
+      "apiVersion": "2015-11-01-preview",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "properties": {
+        "sku": {
+          "Name": "[parameters('service-tier')]"
+        },
+        "retention": "[parameters('data-retention')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Automation/automationAccounts/', variables('automation-account-name'))]"
+      ],
+      "resources": [
+        {
+          "name": "automation",
+          "type": "linkedServices",
+          "apiVersion": "2015-11-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Automation/automationAccounts/', variables('automation-account-name'))]",
+            "[concat('Microsoft.OperationalInsights/workspaces/', variables('oms-workspace-name'))]"
+          ],
+          "properties": {
+            "resourceId": "[resourceId('Microsoft.Automation/automationAccounts/', variables('automation-account-name'))]"
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/providers/locks",
+      "apiVersion": "2016-09-01",
+      "name": "[concat(variables('automation-account-name'), '/Microsoft.Authorization/automationDoNotDelete')]",
+      "dependsOn": [
+        "[variables('oms-workspace-name')]",
+        "[variables('automation-account-name')]"
+      ],
+      "comments": "Resource lock on Automation Account",
+      "properties": {
+        "level": "CannotDelete"
+      }
+    },
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/providers/locks",
+      "apiVersion": "2016-09-01",
+      "name": "[concat(variables('oms-workspace-name'), '/Microsoft.Authorization/logAnalyticsDoNotDelete')]",
+      "dependsOn": [
+        "[variables('oms-workspace-name')]",
+        "[variables('automation-account-name')]"
+      ],
+      "comments": "Resource lock on Log Analytics",
+      "properties": {
+        "level": "CannotDelete"
+      }
+    }
+  ],
+  "outputs": {}
+}

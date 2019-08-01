@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "organization": {
+      "value": "petersen65"
+    },
+    "domain-name": {
+      "value": "petersen65.com"
+    },
+    "ad-domain-admin-password": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/858d67bf-023e-4655-b82a-8bae7c3060ee/resourceGroups/petersen65-sharedsvcs-kv-rg/providers/Microsoft.KeyVault/vaults/petersen65-sharedsvcs-kv"
+        },
+        "secretName": "domain-admin-user"
+      }
+    },
+    "sharedsvcs-subnet-address-prefix": {
+      "value": "10.0.240.0/24"
+    }
+  }
+}

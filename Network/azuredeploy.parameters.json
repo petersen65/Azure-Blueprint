@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "organization": {
+      "value": "petersen65"
+    },
+    "hub-vnet-resource-id": {
+      "value": "/subscriptions/858d67bf-023e-4655-b82a-8bae7c3060ee/resourceGroups/Networking/providers/Microsoft.Network/virtualNetworks/westeurope-hub"
+    }
+  }
+}
